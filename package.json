@@ -9,7 +9,9 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.7",
     "cors": "^2.8.5",
+    "craco": "^0.0.3",
     "express": "^4.18.3",
+    "firebase": "^10.8.1",
     "gsap": "^3.12.5",
     "mongodb": "^6.4.0",
     "react": "^18.2.0",
@@ -21,9 +23,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
