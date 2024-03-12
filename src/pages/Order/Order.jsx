@@ -7,7 +7,7 @@ import { gsap } from "gsap/gsap-core";
 const Order = () => {
     const dispatch = useDispatch();
     const params = useParams();
-    const orders = useSelector((state) => state.orderSlice.oneOrder);
+    const orders = useSelector((state) => state.orderState.oneOrder);
     const user = useSelector((state) => state.userState.uuid);
 
     const handleAnimate = () => {

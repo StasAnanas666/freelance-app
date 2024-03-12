@@ -1,6 +1,7 @@
 import "./Main.css";
 import Advantages from "./Addons/Advantages";
 import Steps from "./Addons/Steps";
+import Stats from "./Addons/Stats";
 import Headnav from "./Addons/Headnav/Headnav";
 import Footer from "./Addons/Footer/Footer";
 import Menu from "./Addons/Headnav/Menu";
@@ -94,6 +95,9 @@ const Main = () => {
             </div>
             <div>
                 <Steps/>
+            </div>
+            <div>
+                <Stats/>
             </div>
             <div>
                 <Footer/>

@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 
 const Author = () => {
     const dispatch = useDispatch();
-    const orders = useSelector(state => state.orderSlice.orderList);
-    const loadStatus = useSelector(state => state.orderSlice.deleteStatus);
+    const orders = useSelector(state => state.orderState.orderList);
+    const loadStatus = useSelector(state => state.orderState.deleteStatus);
     const user = useSelector(state => state.userState.uuid);
 
     useEffect(() => {

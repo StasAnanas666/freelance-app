@@ -14,7 +14,7 @@ import {
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsLogged } from "@userSlice";
-import { auth } from "./features/firebase/fire";
+import { auth } from "@fire";
 import { createPerson, getPerson } from "./features/api/api";
 import { useEffect } from "react";
 
