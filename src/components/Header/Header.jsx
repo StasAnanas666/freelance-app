@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Menu } from "./Addons/Menu";
+import Menu from "./Addons/Menu";
 import { useEffect, useState } from "react";
 
 const Header = () => {

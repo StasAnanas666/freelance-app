@@ -2,8 +2,8 @@ import { auth } from "@fire";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { gsap } from "gsap/gsap-core";
-import { getPerson, updateUsername } from "../../features/slices/personSlice";
-export const Settings = () => {
+import { getPerson, updatePerson } from "../../features/slices/personSlice";
+const Settings = () => {
     const dispatch = useDispatch();
     const uuid = useSelector((state) => state.userState.uuid);
     const person = useSelector((state) => state.personState.currentPerson);
@@ -41,7 +41,7 @@ export const Settings = () => {
 
     const handleUsername = () => {
         dispatch(
-            updateUsername({
+            updatePerson({
                 uuid: person[0].uuid,
                 username: username,
             })
@@ -104,8 +104,8 @@ export const Settings = () => {
                             Никнейм
                         </h2>
                         <div className="flex gap-2 flex-col w-full md:w-4/6 mt-3">
-                            <div class="w-72 settings-user opacity-0">
-                                <div class="relative w-full min-w-[200px] h-10">
+                            <div className="w-72 settings-user opacity-0">
+                                <div className="relative w-full min-w-[200px] h-10">
                                     <input
                                         onChange={(e) =>
                                             setUsername(e.target.value)
@@ -213,3 +213,4 @@ export const Settings = () => {
         </section>
     );
 };
+export default Settings;

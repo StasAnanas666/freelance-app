@@ -15,7 +15,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { setIsLogged } from "@userSlice";
 import { auth } from "@fire";
-import { createPerson, getPerson } from "./features/api/api";
+import { createPerson, getPerson } from "./features/slices/personSlice";
 import { useEffect } from "react";
 
 function App() {
