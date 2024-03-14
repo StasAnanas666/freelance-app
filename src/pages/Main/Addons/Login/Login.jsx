@@ -68,10 +68,17 @@ const Login = () => {
             return;
         }
         try {
-            await auth.createUserWithEmailAndPassword(
-                userForm.login,
-                userForm.password
-            );
+            await auth
+                .createUserWithEmailAndPassword(
+                    userForm.login,
+                    userForm.password
+                )
+                .then((authedUserInfo) => {
+                    console.log("Пользователь успешно создан", authedUserInfo);
+                })
+                .catch((error) => {
+                    console.log("Ошибка создания пользователя", error);
+                });
             handlerClosedModal();
         } catch (error) {
             setBadAccount(true);
