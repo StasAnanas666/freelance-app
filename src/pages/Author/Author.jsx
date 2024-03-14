@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {getOrders} from "../../features/slices/orderSlice";
+import { getOrders } from "../../features/slices/orderSlice";
 import { gsap } from "gsap/gsap-core";
 import { Link } from "react-router-dom";
 
 const Author = () => {
     const dispatch = useDispatch();
-    const orders = useSelector(state => state.orderState.orderList);
-    const loadStatus = useSelector(state => state.orderState.deleteStatus);
-    const user = useSelector(state => state.userState.uuid);
+    const orders = useSelector((state) => state.orderState.orderList);
+    const loadStatus = useSelector((state) => state.orderState.deleteStatus);
+    const user = useSelector((state) => state.userState.uuid);
 
     useEffect(() => {
         document.body.style.overflow = "auto";
@@ -26,9 +26,9 @@ const Author = () => {
                 x: 0,
                 opacity: 1,
                 duration: 0.55,
-                stagger: 0.35
+                stagger: 0.35,
             }
-        )
+        );
     };
 
     useEffect(() => {
@@ -36,7 +36,9 @@ const Author = () => {
     }, []);
 
     useEffect(() => {
-        dispatch(getOrders(user));
+        if (user !== "") {
+            dispatch(getOrders(user));
+        }
     }, [dispatch, loadStatus, user]);
 
     return (
@@ -49,7 +51,7 @@ const Author = () => {
                         </h2>
                         <div className="mt-4 flex flex-col gap-3 px-6 xl:px-0">
                             {Array.isArray(orders) && orders.length > 0 ? (
-                                orders.map(i => (
+                                orders.map((i) => (
                                     <Link
                                         to={`/author/order/${i._id}`}
                                         key={i._id}
@@ -66,7 +68,9 @@ const Author = () => {
                                                         Заказ #{i._id}
                                                     </p>
                                                 )}
-                                                <p className="mt-1 text-gray-400">{i.name}</p>
+                                                <p className="mt-1 text-gray-400">
+                                                    {i.name}
+                                                </p>
                                             </div>
                                             {!i.inWork ? (
                                                 <div className="text-yaOrange-light font-medium">
@@ -76,9 +80,13 @@ const Author = () => {
                                                 <div className="flex flex-col justify-between">
                                                     <div className="font-medium flex gap-2 justify-end">
                                                         <p>Цена:</p>
-                                                        <p className="text-green-500">{i.price}</p>
+                                                        <p className="text-green-500">
+                                                            {i.price}
+                                                        </p>
                                                     </div>
-                                                    <p className="mt-1 text-gray-400">Исполнитель: Ник</p>
+                                                    <p className="mt-1 text-gray-400">
+                                                        Исполнитель: Ник
+                                                    </p>
                                                 </div>
                                             )}
                                         </div>
@@ -92,7 +100,7 @@ const Author = () => {
                 </div>
             </div>
         </section>
-    )
-}
+    );
+};
 
 export default Author;

@@ -36,7 +36,9 @@ const Settings = () => {
     }, []);
 
     useEffect(() => {
-        dispatch(getPerson(uuid));
+        if (uuid !== "") {
+            dispatch(getPerson(uuid));
+        }
     }, [dispatch, uuid]);
 
     const handleUsername = () => {

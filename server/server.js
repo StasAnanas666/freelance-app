@@ -148,6 +148,35 @@ app.post("/api/user/orders/:uuid", async (req, res) => {
     }
 });
 
+//изменение заказа
+app.put("/api/update/order/:id", async (req, res) => {
+    const id = req.params.id;
+    try {
+        await MongoDBClient.connect();
+        const exployees = MongoDBClient.db("freelancedb").collection("orders");
+        var result = await exployees.findOneAndUpdate(
+            { _id: new ObjectId(id) },
+            {
+                $set: {
+                    workType: req.body.workType,
+                    workclassName: req.body.workclassName,
+                    name: req.body.name,
+                    datetime: req.body.datetime,
+                    price: req.body.price,
+                    originals: req.body.originals,
+                    description: req.body.description,
+                },
+            },
+            { returnDocument: "after" }
+        );
+        res.status(200).send(result);
+    } catch (error) {
+        res.status(500).send(error);
+    } finally {
+        await MongoDBClient.close();
+    }
+});
+
 //удаление заказа
 app.delete("/api/order/:id", async (req, res) => {
     const id = req.params.id;

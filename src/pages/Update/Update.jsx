@@ -1,25 +1,29 @@
 import { useEffect, useState } from "react";
 import { auth } from "@fire";
-import { saveOrder } from "../../features/slices/orderSlice";
+import { updateOrder } from "../../features/slices/orderSlice";
 import { useDispatch, useSelector } from "react-redux";
+//import { useParams } from "react-router-dom";
 import { gsap } from "gsap/gsap-core";
-const Create = () => {
+const Update = () => {
     const user = useSelector((state) => state.userState.uuid);
     const [tempUser, setTempuser] = useState("NoNameUser");
     const person = useSelector((state) => state.personState.currentPerson);
+    const order = useSelector((state) => state.orderState.oneOrder);
     const dispatch = useDispatch();
+    //const params = useParams();
 
     const [orderForm, setOrderForm] = useState({
+        _id: order[0]._id,
         uuid: user,
         username: tempUser,
-        workType: "",
-        workclassName: "",
-        name: "",
+        workType: order[0].workType,
+        workclassName: order[0].workclassName,
+        name: order[0].name,
         currentdate: false,
-        datetime: "",
-        price: "",
-        originals: "",
-        description: "",
+        datetime: order[0].datetime,
+        price: order[0].price,
+        originals: order[0].originals,
+        description: order[0].description,
         inWork: false,
     });
     const handleClearForm = () => {
@@ -93,6 +97,10 @@ const Create = () => {
         handleAnimate();
     }, [gsap]);
 
+    // useEffect(() => {
+    //     dispatch(getOneOrder(order[0]._id));
+    // }, [dispatch, order[0]._id]);
+
     useEffect(() => {
         if (person === Array) {
             if (person[0].username) {
@@ -121,8 +129,8 @@ const Create = () => {
         } else {
             try {
                 if (auth.currentUser.uid === user) {
-                    dispatch(saveOrder(orderForm));
-                    alert("Заказ успешно создан");
+                    dispatch(updateOrder(orderForm));
+                    alert("Заказ успешно изменен");
                 } else {
                     alert("relogin pls");
                 }
@@ -140,7 +148,7 @@ const Create = () => {
                 <div className="flex justify-center">
                     <div className="w-full rounded ">
                         <h2 className="text-2xl  font-bold px-12 p-3 bg-white">
-                            Размещение заказа
+                            Изменение заказа
                         </h2>
                         <hr />
                         <div className="grid grid-cols-1 md:grid-cols-2 px-12 py-3 gap-10 ">
@@ -323,4 +331,4 @@ const Create = () => {
     );
 };
 
-export default Create;
+export default Update;

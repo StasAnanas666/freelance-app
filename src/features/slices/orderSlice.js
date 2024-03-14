@@ -15,6 +15,10 @@ export const deleteOrder = createAsyncThunk(
     "user/deleteOrder",
     api.deleteOrder
 );
+export const updateOrder = createAsyncThunk(
+    "user/updateOrder",
+    api.updateOrder
+);
 
 const orderSlice = createSlice({
     name: "orderState",
@@ -41,6 +45,15 @@ const orderSlice = createSlice({
             })
             .addCase(saveOrder.fulfilled, (state, action) => {
                 state.loadOrder = "success";
+            })
+            .addCase(updateOrder.pending, (state) => {
+                state.status = "loading";
+            })
+            .addCase(updateOrder.fulfilled, (state, action) => {
+                state.loadOrder = "success";
+            })
+            .addCase(updateOrder.rejected, (state) => {
+                state.status = "error";
             })
             .addCase(getOneOrder.fulfilled, (state, action) => {
                 state.oneOrder = action.payload;

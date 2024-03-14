@@ -27,8 +27,8 @@ const personSlice = createSlice({
             })
             .addCase(createPerson.fulfilled, (state, action) => {
                 //при успешном создании пользователя выводим в консоль инфо о нем, сохраняем его как текущего пользователя, переключаем статус создания пользователя на true
-                console.log(`Создан пользователь ${action.payload.name}`);
-                state.currentPerson = action.payload;
+                console.log(`Создан пользователь ${action.payload.email}`);
+                state.currentPerson.push(action.payload);
                 state.createStatus = true;
             })
             .addCase(updatePerson.pending, (state) => {

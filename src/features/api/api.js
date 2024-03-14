@@ -58,6 +58,22 @@ export async function saveOrder(order) {
     return res.data;
 }
 
+export async function updateOrder(order) {
+    const res = await axios.put(
+        `${api_url}/update/order/${order._id}`,
+        order,
+        {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }
+    );
+    if (res.status !== 200) {
+        throw new Error("Ошибка при изменении заказа");
+    }
+    return res.data;
+}
+
 export async function getOrders(uuid) {
     const res = await axios.get(`${api_url}/user/orders/${uuid}`);
     if(res.status !== 200) {

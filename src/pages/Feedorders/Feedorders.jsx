@@ -30,7 +30,9 @@ const Feedorders = () => {
     }, []);
 
     useEffect(() => {
-        dispatch(getFeedOrders(user));
+        if (user !== "") {
+            dispatch(getFeedOrders(user));
+        }
     }, [dispatch, user]);
     return (
         <section className="mt-12">
